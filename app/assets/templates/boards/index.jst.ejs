@@ -1,5 +1,24 @@
 <h1>All Boards</h1>
 
 <% boards.each(function(board) { %>
-	<%= board.escape('title') %>
+	<a href="#api/boards/<%= board.id %>">
+		<div class="board-index" 
+				 data-id="<%= board.id %>" 
+				 data-owner-id="<%= board.escape('owner_id') %>">
+				 <p class="board-index-div-content">
+				 		<%= board.escape('title') %>
+				 </p>
+		</div>
+	</a>
 <% }); %>
+
+
+<div class="create-new-board" id="make-new-board">
+	<p class="board-index-div-content">Create new board...</p>
+</div>
+
+<form class="new-board in-active">
+	<label for="board_title">
+		<input type="text" name="board[title]" id="board_title" autofocus>
+	<input type="submit" value="Create">
+</form>
