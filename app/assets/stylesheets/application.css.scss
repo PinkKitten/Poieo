@@ -29,7 +29,7 @@ div.board-index {
 }
 
 div.board-index:hover {
-	background-color: #FAAFBA;
+	background-color: #FAAFBAw;
 }
 
 div.create-new-board {
@@ -60,4 +60,16 @@ form.new-board {
 
 .in-active {
 	display: none;
+}
+
+div.list {
+	float: left;
+	width: 20%;
+	height: 250px;
+	text-align: center;
+	background-color: #F0F0F0;
+	border: 2px solid lightgrey;
+	margin: 10px;
+	font-weight: bold;
+	font-size: 20px;
 }
