@@ -6,8 +6,10 @@ TrelloClone.Views.BoardsShow = Backbone.CompositeView.extend({
 		this.listenTo(this.model, "sync", this.render);
 		// var listNewView = new TrelloClone.Views.ListsNew({ model: this.model });
 		// this.addSubview(".lists-new", listNewView.render());
+		// debugger
 		this.model.lists().each(this.addList.bind(this));
 	},
+	
 	
 	template: JST['boards/show'],
 	
@@ -22,9 +24,20 @@ TrelloClone.Views.BoardsShow = Backbone.CompositeView.extend({
 		var content = this.template({ 
 			board: this.model 
 		});
+		// this.model.lists().each(this.addList.bind(this));
 		this.$el.html(content);
 		this.attachSubviews();
+		this.draggable();
 		return this;
-	}
+	},
+	
+	draggable: (function() {
+		this.$('.cards').sortable({
+			connectWith: '.cards'
+		  // stop: function () {
+	  // 		    console.log("maybe make an ajax request here");
+	  // 		  }
+		})
+	})
 	
 })
