@@ -50,6 +50,26 @@ div.create-new-board {
 	box-shadow: 5px 5px 2px lightgrey;
 }
 
+.edit, .delete {
+	display: inline-block;
+	float: right;
+	opacity: 0.7;
+	margin-top: 2px;
+}
+
+.delete {
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.edit:hover, .delete:hover {
+	opacity: 1;
+}
+
+img.edit, img.delete {
+	height: 15px;
+}
+
 div.additional-list {
 	float: left;
 	width: 20%;
@@ -71,9 +91,10 @@ form.new-list {
 	padding: 10px;
 }
 
-p.board-index-div-content {
+div.board-index-div-content {
 	font-size: 20px;
 	text-align: center;
+	clear: both;
 }
 
 form.new-board {
