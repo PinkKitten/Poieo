@@ -12,7 +12,7 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 	},
 	
 	events: {
-		'drop': 'drop'
+		'dropList': 'dropList'
 	},
 	
   template: JST['lists/show'],
@@ -22,7 +22,7 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 		this.addSubview(".cards", cardsShow);
 	},
 	
-	drop: function(event, index) {
+	dropList: function(event, index) {
 		this.$el.trigger('update-sort-lists', [this.model, index]);
 	},
 	
@@ -34,12 +34,12 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 		return this;
 	},
 	
-	draggable: function () {
-		this.$('.cards-container').sortable({
-			connectWith: '.cards-container',
-		  stop: function (event, ui) {
-	  		ui.item.trigger('drop', [ui.item.index(), ui.item.parent().attr('id')]);
-	  	}
-		});
-	}
+	// draggable: function () {
+	// 	this.$('.cards-container').sortable({
+	// 		connectWith: '.cards-container',
+	// 	  stop: function (event, ui) {
+	//   		ui.item.trigger('dropList', [ui.item.index(), ui.item.parent().attr('id')]);
+	//   	}
+	// 	});
+	// }
 });

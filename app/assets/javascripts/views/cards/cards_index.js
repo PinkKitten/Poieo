@@ -12,7 +12,13 @@ TrelloClone.Views.CardsIndex = Backbone.CompositeView.extend({
 	},
 	
 	events: {
-		'update-sort': 'updateSort'
+		'update-sort': 'updateSort',
+		'click .make-new-card': 'addNewCard'
+	},
+	
+	addNewCard: function(event) {
+		var $target = $(event.currentTarget);
+		var listId = $target.attr('data-id');
 	},
 	
 	updateSort: function(event, movedModel, position, droppedListId) {
