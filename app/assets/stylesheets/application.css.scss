@@ -16,6 +16,11 @@
 @import "bootstrap";
 @import "font-awesome";
 
+h1 {
+	margin-left: 10px;
+	color: #EF8D9B;
+}
+
 div.board-index {
 	float: left;
 	width: 20%;
@@ -53,11 +58,17 @@ div.additional-list {
 	background-color: #F0F0F0;
 	border: 2px solid lightgrey;
 	margin: 10px;
+	box-shadow: 5px 5px 2px lightgrey;
 }
 
-
 div.create-new-list {
+	font-size: 16px;
+	text-align: center;
+	margin-top: 20px;
+}
 
+form.new-list {
+	padding: 10px;
 }
 
 p.board-index-div-content {
@@ -73,6 +84,8 @@ form.new-board {
 	background-color: #F0F0F0;
 	border: 2px solid lightgrey;
 	margin: 10px;
+	padding: 10px;
+	font-weight: normal;
 }
 
 .in-active {
@@ -92,6 +105,7 @@ div.list {
 	position: relative;
 	border-radius: 2px;
 	color: white;
+	box-shadow: 5px 5px 2px lightgrey;
 }
 
 div.card {
