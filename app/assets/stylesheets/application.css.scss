@@ -99,6 +99,71 @@ div.cards-container {
 	height: 600px;
 }
 
+//navbar styling
+
+body {
+    background-color: #FFE4E1;
+}
+
+.navbar-brand {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+		padding: 0;
+}
+
+.navbar-custom {
+    background-color: #D5647C;
+    border-color: #D5647C;
+		radius: 0px;
+		color: #FFFFFF;
+		margin: 0;
+}
+
+.custom-color {
+		color: #FFFFFF;
+		font: 14px "Helvetica Neue",Arial,Helvetica,sans-serif;
+		font-weight: bold;
+		padding: 0px;
+		margin: 0px;
+}
+
+#plus-href {
+	width: 50px;
+	height: 50px;	
+	padding: 0px;
+//	margin-top: 10px;
+}
+
+#my-own-plus {
+	margin-top: 15px;
+	width: 40%;
+}
+
+#my-own-logo {
+	height: 40px;
+	display: inline-block;
+}
+
+#bell-href {
+	width: 50px;
+	height: 50px;
+	padding: 0px;
+//  margin-top: 10px;
+}
+
+#my-own-bell {
+	width: 40%;
+	margin-top: 15px;
+}
+
+#username {
+	//padding: 0px;
+//	margin-top: 20px;
+}
 
 
 
