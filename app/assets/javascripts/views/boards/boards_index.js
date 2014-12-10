@@ -1,12 +1,13 @@
 TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 	initialize: function() {
-		this.listenTo(this.collection, 'sync', this.render);
+		this.listenTo(this.collection, 'sync remove', this.render);
 	},
 	
 	events: {
 		"click #make-new-board": "showNewBoardForm",
 		"submit .new-board": "addNewBoard",
-		"blur .new-board input": "closeNewBoardForm"
+		"blur .new-board input": "closeNewBoardForm",
+		"click .delete-board": 'deleteBoard'
 	},
 
   template: JST['boards/index'],
@@ -15,6 +16,18 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 		var content = this.template({ boards: this.collection });
 		this.$el.html(content);
 		return this;
+	},
+	
+	deleteBoard: function (event) {
+		event.preventDefault();
+		var $target = $(event.currentTarget);
+		var boardId = $target.attr('board-id')
+		var board = this.collection.get(boardId);
+		board.destroy({
+			success: function () {
+				this.collection.remove(board);
+			}
+		});
 	},
 	
 	showNewBoardForm: function(event) {
