@@ -1,8 +1,13 @@
 TrelloClone.Models.Card = Backbone.Model.extend({
 	
-	rootUrl: function (list) {
-		return "/api/boards/" + list.get('board_id') + "/lists/" + list.id + "/cards"
-	},
+	urlRoot: '/api/cards',
 	
+	toJSON: function() {
+		var json = Backbone.Model.prototype.toJSON.call(this);
+		delete json.id;
+		delete json.created_at;
+		delete json.updated_at;
+		return json;
+	}
 	
 });

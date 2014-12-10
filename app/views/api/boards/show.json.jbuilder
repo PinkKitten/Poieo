@@ -4,11 +4,11 @@
 #    - the cards for each list
 
 
-json.(@board, :title, :created_at, :updated_at)
+json.(@board, :title, :created_at, :updated_at, :id)
 
 json.lists @board.lists do |list|
-	json.(list, :title, :ord, :updated_at)
+	json.(list, :title, :ord, :updated_at, :id)
 		json.cards list.cards do |card| 
-			json.(card, :title, :list_id, :description, :ord, :created_at)
+			json.(card, :title, :list_id, :description, :ord, :created_at, :id)
 		end
 end

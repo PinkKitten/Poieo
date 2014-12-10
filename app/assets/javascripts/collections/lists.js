@@ -1,11 +1,11 @@
 TrelloClone.Collections.Lists = Backbone.Collection.extend({
-  url: '/api/boards',
-	// url: '/api/lists',
-	//
-	// url: function (board) {
-	// 	return "/api/boards/" + board.id + "/lists"
-	// },
+	url: '/api/lists',
 	
-  model: TrelloClone.Models.List
+  model: TrelloClone.Models.List,
+		
+	comparator: function(model) {
+		return model.get('ord');
+	},
+
 
 });

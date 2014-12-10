@@ -1,43 +1,43 @@
 TrelloClone.Views.BoardsShow = Backbone.CompositeView.extend({
 	
+	className: "shown-board",
+	
 	initialize: function(options) {
 		this.model = options.model;
-		this.listenTo(this.model.lists(), "add", this.addList);
+		// this.listenTo(this.model.lists(), "add", this.addList);
 		this.listenTo(this.model, "sync", this.render);
-		// var listNewView = new TrelloClone.Views.ListsNew({ model: this.model });
-		// this.addSubview(".lists-new", listNewView.render());
-		// debugger
-		this.model.lists().each(this.addList.bind(this));
+		this.addList(this.model.lists());
 	},
-	
 	
 	template: JST['boards/show'],
 	
-	addList: function (list) {
-		list.fetch();
-		var listsShow = new TrelloClone.Views.ListsShow({ model: list });
-		this.addSubview(".lists", listsShow);
+	addList: function (lists) {
+		var listsIndex = new TrelloClone.Views.ListsIndex({ collection: lists });
+		this.addSubview(".lists", listsIndex);
 	},
 	
 	render: function() {
-		// var view = this;
 		var content = this.template({ 
 			board: this.model 
 		});
-		// this.model.lists().each(this.addList.bind(this));
 		this.$el.html(content);
 		this.attachSubviews();
 		this.draggable();
 		return this;
 	},
 	
-	draggable: (function() {
-		this.$('.cards').sortable({
-			connectWith: '.cards'
-		  // stop: function () {
-	  // 		    console.log("maybe make an ajax request here");
-	  // 		  }
-		})
-	})
-	
+	draggable: function() {
+		this.$('.lists-container').sortable({
+			stop: function(event, ui) {
+				ui.item.trigger('drop', ui.item.index());
+			}
+		});
+		this.$('.cards-container').sortable({
+			connectWith: '.cards-container',
+		  stop: function (event, ui) {
+			  		ui.item.trigger('drop', [ui.item.index(), ui.item.parent().attr('id')]);
+			  	}
+		});
+	}	
+
 })
