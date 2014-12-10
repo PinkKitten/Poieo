@@ -18,17 +18,15 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
   template: JST['lists/show'],
 	
 	addCard: function (model, collection, options) {
-		debugger
 		var cardsShow = new TrelloClone.Views.CardsIndex({ collection: collection, listId: this.model.id });
 		this.addSubview(".cards", cardsShow);
 	},
 	
 	drop: function(event, index) {
-		this.$el.trigger('update-sort', [this.model, index]);
+		this.$el.trigger('update-sort-lists', [this.model, index]);
 	},
 	
 	render: function() {
-		debugger
 		var content = this.template({ list: this.model });
 		this.$el.html(content);
 		this.attachSubviews();
