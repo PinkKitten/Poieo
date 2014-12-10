@@ -7,6 +7,7 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	
 	initialize: function(options) {
 		this.collection = options.collection;
+		this.board = options.board;
 		// this.listenTo(this.collection, 'sync', this.render);
 		this.listenTo(this.collection, 'add', this.addList);
 		this.collection.each(this.addList.bind(this));
@@ -14,7 +15,29 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	},
 	
 	events: {
-		'update-sort-lists': 'updateSortLists'
+		'update-sort-lists': 'updateSortLists',
+		'click .create-new-list': 'addListForm',
+		'submit .new-list': 'createNewList'
+	},
+	
+	addListForm: function(event) {
+		var $target = $(event.currentTarget);
+		$target.addClass('in-active');
+		$('.new-list').removeClass('in-active');
+	},
+	
+	createNewList: function (event) {
+		event.preventDefault();
+		var attr =  $(event.currentTarget).serializeJSON();
+		var newList = new TrelloClone.Models.List(attr['list']);
+		newList.set({ board_id: this.board.id });
+		newList.save({}, {
+			success: function() {
+				$('.new-list').addClass('in-active');
+				$('#make-new-list').removeClass('in-active');
+				this.collection.set(newList, {remove: false} );
+			}.bind(this)
+		})
 	},
 	
 	updateSortLists: function(event, movedModel, position) {
