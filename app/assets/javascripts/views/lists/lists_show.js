@@ -10,7 +10,7 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 	events: {
 		'dropList': 'dropList',
 		'click div.new-card-form': 'addNewCard',
-		'submit .new-card': 'createNewCard'
+		'submit .new-card': 'createNewCard',
 	},
 	
   template: JST['lists/show'],

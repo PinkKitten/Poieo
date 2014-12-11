@@ -8,7 +8,6 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	initialize: function(options) {
 		this.collection = options.collection;
 		this.board = options.board;
-		// this.listenTo(this.collection, 'sync', this.render);
 		this.listenTo(this.collection, 'add', this.addList);
 		this.collection.each(this.addList.bind(this));
 		this.addNewList();
@@ -17,13 +16,33 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	events: {
 		'update-sort-lists': 'updateSortLists',
 		'click .create-new-list': 'addListForm',
-		'submit .new-list': 'createNewList'
+		'submit .new-list': 'createNewList',
+		'click .delete-list': 'deleteList'
 	},
 	
 	addListForm: function(event) {
 		var $target = $(event.currentTarget);
 		$target.addClass('in-active');
 		$('.new-list').removeClass('in-active');
+	},
+	
+	deleteList: function(event) {
+		event.preventDefault();
+		var $target = $(event.currentTarget);
+		var listId = $target.attr('list-id')
+		var list = this.collection.get(listId);
+		list.destroy({
+			success: function () {
+				this.collection.remove(list);
+				var that = this;
+				_(this.subviews('.lists-container')).each(function(view){
+					if(view.model && view.model.attributes.id === parseInt(listId) ) {
+						debugger
+						that.removeSubview('.lists-container', view);
+					}
+				})
+			}.bind(this)
+		});
 	},
 	
 	createNewList: function (event) {
@@ -35,7 +54,7 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 			success: function() {
 				$('.new-list').addClass('in-active');
 				$('#make-new-list').removeClass('in-active');
-				this.collection.set(newList, {remove: false} );
+				this.collection.add(newList, {remove: false} );
 			}.bind(this)
 		})
 	},
@@ -75,7 +94,6 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 		var content = this.template();
 		this.$el.html(content);
 		this.attachSubviews();
-		// this.draggable();
 		return this;
 	},
 	
