@@ -55,6 +55,12 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 				$('.new-list').addClass('in-active');
 				$('#make-new-list').removeClass('in-active');
 				this.collection.add(newList, {remove: false} );
+				this.$('.cards-container').sortable({
+					connectWith: '.cards-container',
+				  stop: function (event, ui) {
+					  		ui.item.trigger('drop', [ui.item.index(), ui.item.parent().attr('data-id')]);
+					  	}
+				});
 			}.bind(this)
 		})
 	},

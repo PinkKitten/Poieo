@@ -1,6 +1,3 @@
-<div class='delete delete-board' card-id="<%= card.id %>">
- <img src="/assets/delete.png" class="delete" />
-</div>
 <div class='edit' data-toggle="modal" data-target="#card<%= card.id %>"><img src="/assets/edit.png" class="edit" /></div>
 <%= card.escape('title') %>
 
@@ -26,6 +23,9 @@
 				</form>
       </div>
       <div class="modal-footer">
+				<div class='delete delete-board' card-id="<%= card.id %>">
+				 <img src="/assets/delete.png" class="delete" />
+				</div>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
