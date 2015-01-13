@@ -35,8 +35,7 @@ div.board-index {
 }
 
 div.board-index:hover {
-//	background-color: #FAAFBA;
-opacity: 0.8;
+    opacity: 0.8;
 }
 
 div.create-new-board {
@@ -48,6 +47,12 @@ div.create-new-board {
 	border: 2px solid lightgrey;
 	margin: 10px;
 	box-shadow: 5px 5px 2px lightgrey;
+    color: grey;
+    padding: 10px;
+}
+
+div.create-new-board:hover {
+    cursor: pointer;
 }
 
 .edit, .delete {
@@ -182,30 +187,29 @@ body {
     top: 0;
     text-align: center;
     margin: auto;
-		padding: 0;
+	padding: 0;
 }
 
 .navbar-custom {
     background-color: #E19CA4;
     border-color: #E19CA4;
-		border-radius: 0px;
-		color: #FFFFFF;
-		margin: 0;
+	border-radius: 0px;
+	color: #FFFFFF;
+	margin: 0;
 }
 
 .custom-color {
-		color: #FFFFFF;
-		font: 14px "Helvetica Neue",Arial,Helvetica,sans-serif;
-		font-weight: bold;
-		padding: 0px;
-		margin: 0px;
+	color: #FFFFFF;
+	font: 14px "Helvetica Neue",Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	padding: 0px;
+	margin: 0px;
 }
 
 #plus-href {
 	width: 50px;
 	height: 50px;	
 	padding: 0px;
-//	margin-top: 10px;
 }
 
 #my-own-plus {
@@ -230,11 +234,32 @@ body {
 	margin-top: 15px;
 }
 
-#username {
-	//padding: 0px;
-//	margin-top: 20px;
+.sign-up, .sign-in {
+    margin-left: 10px;
 }
 
+.header-text a {
+    color: white;
+}
 
+.login-btn {
+    background-color: #E19CA4;
+    border-color: #E19CA4;
+}
 
+.login-btn:hover {
+    background-color: pink;
+    border-color: pink;
+}
+
+.log-out-btn {
+    background-color: transparent;
+    border: none;
+}
+
+.log-out-btn:hover {
+    color: pink;
+    background-color: transparent;
+    border: none;
+}
  
