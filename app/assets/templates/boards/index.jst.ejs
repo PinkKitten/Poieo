@@ -1,19 +1,19 @@
 <h1>All Boards</h1>
 
 <% boards.each(function(board) { %>
-	<a href="#/boards/<%= board.id %>">
+    <!-- <a href="#/boards/<%= board.id %>"> -->
 		<div class="board-index" 
 				 data-id="<%= board.id %>" 
 				 data-owner-id="<%= board.escape('owner_id') %>">
 				 <div class='delete delete-board' board-id="<%= board.id %>">
                      <img src="assets/delete.png" class="delete" />
 				 </div>
-				 <div class='edit'><img src="assets/edit.png" class="edit" /></div>
-				 <div class="board-index-div-content">
-				 		<%= board.escape('title') %>
-				 </div>
+				 <div class='edit edit-board'>
+                     <img src="assets/edit.png" class="edit" />
+                 </div>
+				 <div class="board-index-div-content"><p><%= board.escape('title') %></p></div>
 		</div>
-	</a>
+    <!-- </a> -->
 <% }); %>
 
 

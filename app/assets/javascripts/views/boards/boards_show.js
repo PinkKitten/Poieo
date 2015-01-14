@@ -31,7 +31,6 @@ TrelloClone.Views.BoardsShow = Backbone.CompositeView.extend({
 	},
 	
 	draggable: function() {
-		debugger
 		this.$('.lists-container').sortable({
 			items: "div.list",
 			stop: function(event, ui) {

@@ -7,7 +7,9 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 		"click #make-new-board": "showNewBoardForm",
 		"submit .new-board": "addNewBoard",
 		"blur .new-board input": "closeNewBoardForm",
-		"click .delete-board": 'deleteBoard'
+		"click .delete-board": 'deleteBoard',
+        "click .edit-board": 'editBoard',
+        "blur .editing": "closeField"
 	},
 
   template: JST['boards/index'],
@@ -30,6 +32,27 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 		});
 	},
 	
+    editBoard: function (event) {
+        event.preventDefault();
+        $target = $(event.currentTarget).parent().find('.board-index-div-content').find('p');
+        this.currentEditing = $target.replaceWith($('<input>')
+                                     .val($target.text())
+                                     .addClass('editing'));
+    },
+    
+    closeField: function (event) {
+      var $target = $(event.target);
+      debugger
+      // $target.replaceWith(this.currentEditing.text($target.val()));
+      // var attribute = this.currentEditing.data('attribute');
+      // this.model.set(attribute, this.currentEditing.text());
+      // this.model.save({}, {
+      //   success: function () {
+      //     this.collection.set(this.model, { remove: false });
+      //   }.bind(this)
+      // })
+    },
+    
 	showNewBoardForm: function(event) {
 		var $target = $(event.currentTarget);
 		$target.addClass('in-active');
