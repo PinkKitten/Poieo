@@ -1,6 +1,6 @@
 TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 	initialize: function() {
-		this.listenTo(this.collection, 'sync remove', this.render);
+        this.listenTo(this.collection, 'sync remove', this.render);
 	},
 	
 	events: {
@@ -31,26 +31,31 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 			}
 		});
 	},
-	
+
     editBoard: function (event) {
         event.preventDefault();
-        $target = $(event.currentTarget).parent().find('.board-index-div-content').find('p');
+        var $target = $(event.currentTarget).parent().find('.board-index-div-content').find('p');
+        debugger
+        this.editingId = $(event.currentTarget).attr("board-id");
         this.currentEditing = $target.replaceWith($('<input>')
                                      .val($target.text())
                                      .addClass('editing'));
     },
-    
+
     closeField: function (event) {
-      var $target = $(event.target);
+      var $target = $(event.currentTarget);
+      $target.replaceWith(this.currentEditing.text($target.val()));
       debugger
-      // $target.replaceWith(this.currentEditing.text($target.val()));
       // var attribute = this.currentEditing.data('attribute');
-      // this.model.set(attribute, this.currentEditing.text());
-      // this.model.save({}, {
-      //   success: function () {
-      //     this.collection.set(this.model, { remove: false });
-      //   }.bind(this)
-      // })
+      // var model = this.collection.get(this.editingId);
+      var model = this.collection.fetchOrGet(this.editingId);
+      model.set('title', this.currentEditing.text());
+      debugger
+      model.save({}, {
+        success: function () {
+          this.collection.set(model, { remove: false });
+        }.bind(this)
+      })
     },
     
 	showNewBoardForm: function(event) {

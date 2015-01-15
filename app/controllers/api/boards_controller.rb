@@ -30,6 +30,15 @@ module Api
         render json: ["You aren't a member of this board"], status: 403
       end
     end
+    
+    def update
+      @board = Board.find(params[:id])
+      if @board.update(board_params)
+        render json: @board
+      else
+        render json: @board.errors, status: 422
+      end
+    end
 
     private
 
