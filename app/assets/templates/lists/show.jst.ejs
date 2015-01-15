@@ -8,17 +8,18 @@
 <div class="cards"> </div>
 <div class='new-card-form'>
 	<div class="make-new-card" data-id="<%= list.id %>">Add a card...</div>
-	<form class="new-card in-active">
+	<form class="new-card in-active" role="form">
 		<div class="form-group">
 			<label for="card_title">
 			<input type="text" 
 						 name="card[title]" 
 						 id="card_title" 
-						 class="form-control"  
+						 class="form-control card-titles"  
 						 placeholder="Card title"
 						 autofocus>
 			<br>
-			<input type="submit" value="Add" class='btn btn-default'>
+            <input type="submit" value="Add" class='btn btn-default'>
+            <button class='btn btn-default exit-card-form'>Exit</button>
 		</div>
 	</form>
 </div>

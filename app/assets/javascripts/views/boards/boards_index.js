@@ -6,7 +6,7 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 	events: {
 		"click #make-new-board": "showNewBoardForm",
 		"submit .new-board": "addNewBoard",
-		"blur .new-board input": "closeNewBoardForm",
+        "click button.close-form": "closeNewBoardForm",
 		"click .delete-board": 'deleteBoard',
         "click .edit-board": 'editBoard',
         "blur .editing": "closeField"

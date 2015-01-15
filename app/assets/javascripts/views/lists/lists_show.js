@@ -19,7 +19,7 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 		'submit .new-card': 'createNewCard',
         'click .edit-list': 'editList',
         'blur .editing': 'closeListField',
-        "blur .new-card input": "closeNewCardForm"
+        "click .exit-card-form": "closeNewCardForm"
 	},
 	
   template: JST['lists/show'],
@@ -46,6 +46,7 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
     },
 
 	createNewCard: function (event) {
+        debugger
 		event.preventDefault();
 		var attr =  $(event.currentTarget).serializeJSON();
 		var newCard = new TrelloClone.Models.Card(attr['card']);
@@ -72,7 +73,6 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 	},
 	
 	dropList: function(event, index) {
-        debugger
 		this.$el.trigger('update-sort-lists', [this.model, index]);
 	},
 	
@@ -87,15 +87,6 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 	closeNewCardForm: function(event) {
 		$('.new-card').addClass('in-active');
 		$('.make-new-card').removeClass('in-active');
-        $('#card_title').val('');
+        $('.card-titles').val('');
 	}
-	
-	// draggable: function () {
-	// 	this.$('.cards-container').sortable({
-	// 		connectWith: '.cards-container',
-	// 	  stop: function (event, ui) {
-	//   		ui.item.trigger('dropList', [ui.item.index(), ui.item.parent().attr('id')]);
-	//   	}
-	// 	});
-	// }
 });

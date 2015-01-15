@@ -36,7 +36,6 @@ TrelloClone.Views.BoardsShow = Backbone.CompositeView.extend({
 			stop: function(event, ui) {
                 neworder = new Array();
                 $('div.list').each(function () {
-                    //get the id
                     var id = $(this).attr("data-id");
                     neworder.push(id);
                 });
