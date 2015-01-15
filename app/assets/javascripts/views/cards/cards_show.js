@@ -2,6 +2,11 @@ TrelloClone.Views.CardsShow = Backbone.View.extend({
 	
 	tagName: 'div',
 	className: 'card',
+    attributes: function() {
+      return {
+        'data-id': this.model.id
+      };
+    },
   template: JST['cards/show'],
     
     initialize: function(options) {
@@ -9,13 +14,14 @@ TrelloClone.Views.CardsShow = Backbone.View.extend({
     },
 	
 	events: {
-		'drop': 'drop',
+		'dropCard': 'dropCard',
         'click .save-card': "updateCard",
         'click .close-form': 'closeCardModal',
         'click .edit': 'openCardModal'
 	},
 	
-	drop: function(event, index, droppedListId) {
+	dropCard: function(event, index, droppedListId) {
+        debugger
 		this.$el.trigger('update-sort', [this.model, index, droppedListId]);
 	},
 	

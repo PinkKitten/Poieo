@@ -17,31 +17,47 @@ TrelloClone.Views.CardsIndex = Backbone.CompositeView.extend({
 	},
 	
 	updateSort: function(event, movedModel, position, droppedListId) {
-		//loop through the area based on the ord and length of the collection
-		movedModel.set('list_id', droppedListId);
-		movedModel.save();
-		var originalIdx = 0;
-		this.collection.forEach(function(model, index) {
-			if (model === movedModel) { 
-				originalIdx = index;
-			}
-		})
-		this.collection.forEach(function(model, index) {
-			if (model === movedModel) {
-				model.set('ord', position);
-				model.save();
-			} else {
-				var ordinal = index;
-				if (index > originalIdx) {
-					ordinal -= 1;
-				}
-				if (ordinal >= position ) {
-					ordinal += 1;
-				}
+        if (this.collection.include(model)) {
+    		movedModel.set('list_id', droppedListId);
+    		movedModel.save();
+    		var originalIdx = 0;
+    		this.collection.forEach(function(model, index) {
+    			if (model === movedModel) { 
+    				originalIdx = index;
+    			}
+    		})
+    		this.collection.forEach(function(model, index) {
+    			if (model === movedModel) {
+    				model.set('ord', position);
+    				model.save();
+    			} else {
+    				var ordinal = index;
+    				if (index > originalIdx) {
+    					ordinal -= 1;
+    				}
+    				if (ordinal >= position ) {
+    					ordinal += 1;
+    				}
+    				model.set('ord', ordinal);
+    				model.save();
+    			}
+    		});
+        } else {
+            debugger
+            this.collection.forEach(function(model, index) {
+                var ordinal = index;
+                if (index >= position) {
+                    ordinal += 1
+                } else {
+                    ordinal -= 1
+                }
 				model.set('ord', ordinal);
 				model.save();
-			}
-		});
+            });
+            movedModel.set('ord', position);
+    		movedModel.set('list_id', droppedListId);
+    		movedModel.save();
+        }
 	},
 	
 	addCard: function (card) {
