@@ -45,13 +45,17 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 
     closeField: function (event) {
       var $target = $(event.currentTarget);
+      $('div.board-error-message').hide();
       $target.replaceWith(this.currentEditing.text($target.val()));
       var model = this.collection.fetchOrGet(this.editingId);
       model.set('title', this.currentEditing.text());
       model.save({}, {
         success: function () {
           this.collection.set(model, { remove: false });
-        }.bind(this)
+        }.bind(this),
+        error: function () {
+            $('div.board-error-message').show();
+        }
       })
     },
     
@@ -64,6 +68,7 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 	
 	addNewBoard: function(event) {
 		event.preventDefault();
+        $('div.board-error-message').hide();
 		var attributes = $(event.currentTarget).serializeJSON();
 		var model = new TrelloClone.Models.Board(attributes);
 		model.save({}, {
@@ -71,11 +76,15 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 				$('.new-board').addClass('in-active');
 				$('#make-new-board').removeClass('in-active');
 				this.collection.set(model, {remove: false} );
-			}.bind(this)
+			}.bind(this),
+            error: function () {
+                $('div.board-error-message').show();
+            }
 		})
 	},
 	
 	closeNewBoardForm: function(event) {
+        $('div.board-error-message').hide();
 		$('.new-board').addClass('in-active');
 		$('#make-new-board').removeClass('in-active');
         $('#board_title').val('');

@@ -15,11 +15,11 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
     
 	events: {
 		'dropList': 'dropList',
-		'click div.new-card-form': 'addNewCard',
+		'click div.make-new-card': 'addNewCard',
 		'submit .new-card': 'createNewCard',
         'click .edit-list': 'editList',
         'blur .editing': 'closeListField',
-        "click .exit-card-form": "closeNewCardForm"
+        "click button.close-card-form": "closeNewCardForm"
 	},
 	
   template: JST['lists/show'],
@@ -36,18 +36,22 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 
     closeListField: function (event) {
       var $target = $(event.currentTarget);
+      $('div.list-error-message').hide();
       $target.replaceWith(this.currentEditing.text($target.val()));
       this.model.set('title', this.currentEditing.text());
       this.model.save({}, {
         success: function () {
           this.collection.set(this.model, { remove: false });
-        }.bind(this)
+        }.bind(this),
+        error: function () {
+            $('div.list-error-message').show();
+        }
       })
     },
 
 	createNewCard: function (event) {
-        debugger
 		event.preventDefault();
+        $('div.card-error-message').hide();
 		var attr =  $(event.currentTarget).serializeJSON();
 		var newCard = new TrelloClone.Models.Card(attr['card']);
 		newCard.set({ list_id: this.model.id });
@@ -56,15 +60,19 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 				$('.new-card').addClass('in-active');
 				$('.make-new-card').removeClass('in-active');
 				this.model.cards().add(newCard);
-			}.bind(this)
+                $('.card-titles').val('');
+			}.bind(this),
+            error: function () {
+                $('div.card-error-message').show();
+            }
 		})
 	},
 	
 	addNewCard: function(event) {
-		var $target = $(event.currentTarget);
+		var $target = $(event.currentTarget).parent();
 		$target.find('.make-new-card').addClass('in-active');
 		$target.find('.new-card').removeClass('in-active');
-        $('#card_title').focus();
+        $target.find('#card_title').focus();
 	},
 	
 	addCard: function (model, collection, options) {
@@ -80,11 +88,11 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 		var content = this.template({ list: this.model });
 		this.$el.html(content);
 		this.attachSubviews();
-		// this.draggable();
 		return this;
 	},
     
 	closeNewCardForm: function(event) {
+        $('div.card-error-message').hide();
 		$('.new-card').addClass('in-active');
 		$('.make-new-card').removeClass('in-active');
         $('.card-titles').val('');

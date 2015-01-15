@@ -10,6 +10,7 @@
 	<div class="make-new-card" data-id="<%= list.id %>">Add a card...</div>
 	<form class="new-card in-active" role="form">
 		<div class="form-group">
+            <br>
 			<label for="card_title">
 			<input type="text" 
 						 name="card[title]" 
@@ -17,9 +18,8 @@
 						 class="form-control card-titles"  
 						 placeholder="Card title"
 						 autofocus>
-			<br>
-            <input type="submit" value="Add" class='btn btn-default'>
-            <button class='btn btn-default exit-card-form'>Exit</button>
+            <br><input type="submit" value="Add" class='btn btn-default'>
+                            <button type="button" class="close close-card-form"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		</div>
 	</form>
 </div>

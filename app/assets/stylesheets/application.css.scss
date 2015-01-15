@@ -138,6 +138,7 @@ div.list {
 	border-radius: 2px;
 	color: white;
 	box-shadow: 5px 5px 2px lightgrey;
+    cursor: pointer;
 }
 
 div.card {
@@ -155,6 +156,7 @@ div.card {
 
 div.card:hover {
 	background-color: #e0e0e0;
+    cursor: pointer;
 }
 
 div.cards {
@@ -290,4 +292,27 @@ body {
     color: pink;
     background-color: #E19CA4;
     border: none;
+}
+
+// error messages
+
+div.alert.alert-warning.alert-dismissible.list-error-message {
+    display: none;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+}
+
+div.alert.alert-warning.alert-dismissible.card-error-message {
+    display: none;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+}
+
+div.alert.alert-warning.alert-dismissible.board-error-message {
+    display: none;
+    position: absolute;
+    top: 50px;
+    width: 100%;
 }

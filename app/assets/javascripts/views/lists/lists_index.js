@@ -48,6 +48,7 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	
 	createNewList: function (event) {
 		event.preventDefault();
+        $('div.list-error-message').hide();
 		var attr =  $(event.currentTarget).serializeJSON();
 		var newList = new TrelloClone.Models.List(attr['list']);
 		newList.set({ board_id: this.board.id, ord: this.collection.length });
@@ -62,7 +63,11 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 					  		ui.item.trigger('drop', [ui.item.index(), ui.item.parent().attr('data-id')]);
 					  	}
 				});
-			}.bind(this)
+                $('#list_title').val('');
+			}.bind(this),
+            error: function() {
+                $('div.list-error-message').show();
+              }
 		})
 	},
 	
@@ -112,6 +117,7 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	},
     
 	closeNewListForm: function(event) {
+        $('div.list-error-message').hide();
 		$('.new-list').addClass('in-active');
 		$('#make-new-list').removeClass('in-active');
         $('#list_title').val('');
