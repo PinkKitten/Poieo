@@ -236,7 +236,6 @@ body {
 	width: 50px;
 	height: 50px;
 	padding: 0px;
-//  margin-top: 10px;
 }
 
 #my-own-bell {
@@ -285,4 +284,10 @@ body {
 .guest-login {
     margin-left: 10px;
     margin-top: 10px;
+}
+
+.nav > li > a.sign-in-link:hover, .nav > li > a.sign-up-link:hover {
+    color: pink;
+    background-color: #E19CA4;
+    border: none;
 }

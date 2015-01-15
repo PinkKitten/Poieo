@@ -48,25 +48,5 @@ TrelloClone.Views.CardsShow = Backbone.View.extend({
             $("#card_description").focus();
         })
     }
-    
-        //     deleteCard: function (event) {
-        //         event.preventDefault();
-        //         var $target = $(event.currentTarget);
-        // var cardId = $target.attr('card-id')
-        // var card = this.collection.get(cardId);
-        //         debugger
-        // card.destroy({
-        //     success: function () {
-        //         this.collection.remove(card);
-        //                 debugger
-        //         var that = this;
-        //         _(this.subviews('.cards-container')).each(function(view){
-        //             if(view.model && view.model.attributes.id === parseInt(cardId) ) {
-        //                 that.removeSubview('.cards-container', view);
-        //             }
-        //         })
-        //     }.bind(this)
-        // });
-        //     }
 
 });

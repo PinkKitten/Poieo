@@ -67,6 +67,7 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	},
 	
 	updateSortLists: function(event, movedModel, position) {
+        debugger
 		var originalIdx = 0;
 		this.collection.forEach(function(model, index) {
 			if (model === movedModel) { 
@@ -116,12 +117,4 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 		$('#make-new-list').removeClass('in-active');
         $('#list_title').val('');
 	}
-	// draggable: function() {
-	// 	this.$('.lists-container').sortable({
-	// 		stop: function(event, ui) {
-	// 			ui.item.trigger('drop', ui.item.index());
-	// 		}
-	// 	});
-	// }
-	
 })

@@ -1,13 +1,18 @@
 TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 	tagName: 'div',
 	className: 'list',
-	
+    attributes: function() {
+      return {
+        'data-id': this.model.id
+      };
+    },
+    
 	initialize: function(options) {
 		this.model = options.model;
         this.collection = options.collection;
 		this.addCard(this.model, this.model.cards());
 	},
-	
+    
 	events: {
 		'dropList': 'dropList',
 		'click div.new-card-form': 'addNewCard',
@@ -67,6 +72,7 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 	},
 	
 	dropList: function(event, index) {
+        debugger
 		this.$el.trigger('update-sort-lists', [this.model, index]);
 	},
 	

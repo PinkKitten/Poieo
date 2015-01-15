@@ -34,7 +34,14 @@ TrelloClone.Views.BoardsShow = Backbone.CompositeView.extend({
 		this.$('.lists-container').sortable({
 			items: "div.list",
 			stop: function(event, ui) {
-				ui.item.trigger('dropList', ui.item.index());
+                neworder = new Array();
+                $('div.list').each(function () {
+                    //get the id
+                    var id = $(this).attr("data-id");
+                    neworder.push(id);
+                });
+                var droppedPosition = neworder.indexOf(ui.item.attr('data-id'));
+				ui.item.trigger('dropList', droppedPosition);
 			}
 		});
 		this.$('.cards-container').sortable({
