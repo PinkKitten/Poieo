@@ -15,7 +15,7 @@
     <% if signed_in? %>
       <li><%= button_to "Sign out", session_url, method: :delete, class: "btn btn-primary navbar-btn log-out-btn" %></li>
     <% else %>
-      <li class="header-text"><%= link_to "Log in", new_session_url %></li>
+      <li class="header-text"><%= link_to "Sign in", new_session_url %></li>
       <li class="header-text"><%= link_to "Sign up", new_user_url %></li>
     <% end %>
     </ul>

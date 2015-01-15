@@ -26,3 +26,26 @@
 //= require_tree ./routers
 //= require_tree .
 
+$.GuestLogin = function (el) {
+  this.$el = $(el);
+	var that = this;
+	this.$el.on('click', 'input.guest-login', function (event) {
+		event.preventDefault();
+		that.guest();
+	})
+};
+
+$.fn.guestLogin = function () {
+  return this.each(function () {
+    new $.GuestLogin(this);
+  });
+};
+    
+$.GuestLogin.prototype.guest = function () {
+	$('#user_email').val('guest@gmail.com');
+	$('#user_password').val('kittens');
+
+  setTimeout(function() { 
+		$( "#log-in-submit-button" ).trigger( "click" );
+  }, 500);
+};

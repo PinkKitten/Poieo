@@ -3,10 +3,17 @@
 <form action="/session" method="post" class="sign-in">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label>Email<br>
-    <input name="user[email]" type="text"><br>
+    <input name="user[email]" type="text" id="user_email"><br>
   </label><br>
   <label>Password<br>
-    <input name="user[password]" type="password"><br>
+    <input name="user[password]" type="password" id="user_password"><br>
   </label><br>
-  <input type="submit" value="Submit" class="btn btn-primary login-btn"><br>
+  <input type="submit" value="Submit" class="btn btn-primary login-btn" id="log-in-submit-button"><br>
 </form>
+ <input type="submit" value="Sign in as guest" class="btn btn-primary login-btn guest-login">
+ 
+<script>
+    $(function () {
+      $('body').guestLogin();
+    })
+</script>
