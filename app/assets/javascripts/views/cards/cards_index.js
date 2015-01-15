@@ -16,7 +16,6 @@ TrelloClone.Views.CardsIndex = Backbone.CompositeView.extend({
 	},
 	
 	updateSort: function(event, movedModel, position, droppedListId) {
-		debugger
 		//loop through the area based on the ord and length of the collection
 		movedModel.set('list_id', droppedListId);
 		movedModel.save();
@@ -45,7 +44,10 @@ TrelloClone.Views.CardsIndex = Backbone.CompositeView.extend({
 	},
 	
 	addCard: function (card) {
-		var cardsShow = new TrelloClone.Views.CardsShow({ model: card });
+		var cardsShow = new TrelloClone.Views.CardsShow({ 
+            model: card,
+            collection: this.collection
+        });
 		this.addSubview(".cards-container", cardsShow);
 	},
 	

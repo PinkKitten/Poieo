@@ -13,12 +13,19 @@
       <div class="modal-body">
 				<form class="edit-card">
 					<div class="form-group">
-						<label for="card_description">
+						<label for="card_title">
 						<input type="text" 
-									 name="card[description]" 
-									 id="card_description" 
-									 value="<%= card.escape('description')%>"
-									 class="form-control" 
+									 name="card[title]" 
+									 id="card_title" 
+									 value="<%= card.escape('title')%>"
+									 class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="card_description">
+                        <textarea name="card[description]" 
+								  id="card_description" 
+                                  placeholder="description"
+								  class="form-control"><%= card.escape('description')%></textarea>
 					</div>
 				</form>
       </div>
@@ -27,7 +34,7 @@
 				 <img src="/assets/delete.png" class="delete" />
 				</div>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary save-card" data-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
