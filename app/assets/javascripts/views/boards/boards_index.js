@@ -59,6 +59,7 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 		var $target = $(event.currentTarget);
 		$target.addClass('in-active');
 		$('.new-board').removeClass('in-active');
+        $('#board_title').focus();
 	},
 	
 	addNewBoard: function(event) {
@@ -77,6 +78,7 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
 	closeNewBoardForm: function(event) {
 		$('.new-board').addClass('in-active');
 		$('#make-new-board').removeClass('in-active');
+        $('#board_title').val('');
 	}
 	
 });
