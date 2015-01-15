@@ -4,6 +4,7 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 	
 	initialize: function(options) {
 		this.model = options.model;
+        this.collection = options.collection;
 		this.addCard(this.model, this.model.cards());
 	},
 	
@@ -11,10 +12,33 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 		'dropList': 'dropList',
 		'click div.new-card-form': 'addNewCard',
 		'submit .new-card': 'createNewCard',
+        'click .edit-list': 'editList',
+        'blur .editing': 'closeListField'
 	},
 	
   template: JST['lists/show'],
-	
+    
+    editList: function (event) {
+        event.preventDefault();
+        var $target = $(event.currentTarget).parent().find('.list-title').find('p');
+        this.currentEditing = $target.replaceWith($('<input>')
+                                     .val($target.text())
+                                     .addClass('editing')
+                                     .addClass('form-control'));
+        $('.editing').focus();
+    },
+
+    closeListField: function (event) {
+      var $target = $(event.currentTarget);
+      $target.replaceWith(this.currentEditing.text($target.val()));
+      this.model.set('title', this.currentEditing.text());
+      this.model.save({}, {
+        success: function () {
+          this.collection.set(this.model, { remove: false });
+        }.bind(this)
+      })
+    },
+
 	createNewCard: function (event) {
 		event.preventDefault();
 		var attr =  $(event.currentTarget).serializeJSON();

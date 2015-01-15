@@ -66,7 +66,6 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	},
 	
 	updateSortLists: function(event, movedModel, position) {
-		debugger
 		var originalIdx = 0;
 		this.collection.forEach(function(model, index) {
 			if (model === movedModel) { 
@@ -92,7 +91,10 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	},
 	
 	addList: function (list) {
-		var listsShow = new TrelloClone.Views.ListsShow({ model: list });
+		var listsShow = new TrelloClone.Views.ListsShow({ 
+            model: list,
+            collection: this.collection 
+        });
 		this.addSubview(".lists-container", listsShow);
 	},
 	

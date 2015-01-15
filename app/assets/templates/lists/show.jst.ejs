@@ -1,8 +1,10 @@
 <div class='delete delete-list' list-id="<%= list.id %>">
  <img src="/assets/delete.png" class="delete" />
 </div>
-<div class='edit'><img src="/assets/edit.png" class="edit" /></div>
-<%= list.escape('title') %> 
+<div class='edit edit-list'><img src="/assets/edit.png" class="edit" /></div>
+<div class="list-title">
+    <p><%= list.escape('title') %></p>
+</div>
 <div class="cards"> </div>
 <div class='new-card-form'>
 	<div class="make-new-card" data-id="<%= list.id %>">Add a card...</div>

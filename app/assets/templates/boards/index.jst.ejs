@@ -1,7 +1,7 @@
 <h1>All Boards</h1>
 
 <% boards.each(function(board) { %>
-    <!-- <a href="#/boards/<%= board.id %>"> -->
+    <a href="#/boards/<%= board.id %>">
 		<div class="board-index" 
 				 data-id="<%= board.id %>" 
 				 data-owner-id="<%= board.escape('owner_id') %>">
@@ -13,7 +13,7 @@
                  </div>
 				 <div class="board-index-div-content"><p><%= board.escape('title') %></p></div>
 		</div>
-    <!-- </a> -->
+    </a>
 <% }); %>
 
 
