@@ -13,7 +13,8 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 		'click div.new-card-form': 'addNewCard',
 		'submit .new-card': 'createNewCard',
         'click .edit-list': 'editList',
-        'blur .editing': 'closeListField'
+        'blur .editing': 'closeListField',
+        "blur .new-card input": "closeNewCardForm"
 	},
 	
   template: JST['lists/show'],
@@ -56,7 +57,8 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 	addNewCard: function(event) {
 		var $target = $(event.currentTarget);
 		$target.find('.make-new-card').addClass('in-active');
-		$target.find('.new-card').removeClass('in-active')
+		$target.find('.new-card').removeClass('in-active');
+        $('#card_title').focus();
 	},
 	
 	addCard: function (model, collection, options) {
@@ -75,6 +77,12 @@ TrelloClone.Views.ListsShow = Backbone.CompositeView.extend({
 		// this.draggable();
 		return this;
 	},
+    
+	closeNewCardForm: function(event) {
+		$('.new-card').addClass('in-active');
+		$('.make-new-card').removeClass('in-active');
+        $('#card_title').val('');
+	}
 	
 	// draggable: function () {
 	// 	this.$('.cards-container').sortable({

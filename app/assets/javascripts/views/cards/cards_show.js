@@ -11,7 +11,8 @@ TrelloClone.Views.CardsShow = Backbone.View.extend({
 	events: {
 		'drop': 'drop',
         'click .save-card': "updateCard",
-        // 'click .delete-card': "deleteCard"
+        'click .close-form': 'closeCardModal',
+        'click .edit': 'openCardModal'
 	},
 	
 	drop: function(event, index, droppedListId) {
@@ -35,6 +36,18 @@ TrelloClone.Views.CardsShow = Backbone.View.extend({
           }.bind(this)
         })
     },
+    
+    closeCardModal: function(event) {
+        $('#card_title').val(this.model.get('title'));
+        $('#card_description').val(this.model.get('description'));
+    },
+    
+    openCardModal: function(event) {
+        var card = "card" + this.model.id;
+        $('body').on('shown.bs.modal', '.modal', function () {
+            $("#card_description").focus();
+        })
+    }
     
         //     deleteCard: function (event) {
         //         event.preventDefault();

@@ -7,7 +7,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <button type="button" class="close close-form" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		<div class='delete delete-card' card-id="<%= card.id %>" data-dismiss="modal">
 		 <img src="/assets/delete.png" class="delete"/>
 		</div>
@@ -27,13 +27,13 @@
 						<label for="card_description">
                         <textarea name="card[description]" 
 								  id="card_description" 
-                                  placeholder="description"
+                                  placeholder="Description"
 								  class="form-control"><%= card.escape('description')%></textarea>
 					</div>
 				</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default close-form" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary save-card" data-dismiss="modal">Save changes</button>
       </div>
     </div>

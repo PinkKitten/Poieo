@@ -17,13 +17,15 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 		'update-sort-lists': 'updateSortLists',
 		'click .create-new-list': 'addListForm',
 		'submit .new-list': 'createNewList',
-		'click .delete-list': 'deleteList'
+		'click .delete-list': 'deleteList',
+        "blur .new-list input": "closeNewListForm",
 	},
 	
 	addListForm: function(event) {
 		var $target = $(event.currentTarget);
 		$target.addClass('in-active');
 		$('.new-list').removeClass('in-active');
+        $('#list_title').focus();
 	},
 	
 	deleteList: function(event) {
@@ -107,6 +109,12 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 	addNewList: function () {
 		var newListShow = new TrelloClone.Views.NewListShow();
 		this.addSubview(".lists-container", newListShow);
+	},
+    
+	closeNewListForm: function(event) {
+		$('.new-list').addClass('in-active');
+		$('#make-new-list').removeClass('in-active');
+        $('#list_title').val('');
 	}
 	// draggable: function() {
 	// 	this.$('.lists-container').sortable({

@@ -87,15 +87,21 @@ div.additional-list {
 }
 
 div.create-new-list {
-	font-size: 16px;
-	text-align: center;
-	margin-top: 20px;
+    color: grey;
+    padding: 10px;
+}
+
+div.create-new-list:hover {
+    cursor: pointer;
 }
 
 form.new-list {
 	padding: 10px;
 }
 
+.delete-list, .edit-list {
+    cursor: pointer;
+}
 div.board-index-div-content {
 	font-size: 20px;
 	text-align: center;
@@ -160,6 +166,7 @@ div.make-new-card {
 	font-weight: normal;
 	color: white;
 	padding: 5px;
+    cursor: pointer;
 }
 
 div.lists {
@@ -174,6 +181,9 @@ div.cards-container {
 	min-height: 20px;
 }
 
+.edit, .delete {
+    cursor: pointer;
+}
 //navbar styling
 
 body {
