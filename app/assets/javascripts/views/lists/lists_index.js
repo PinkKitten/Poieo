@@ -37,7 +37,6 @@ TrelloClone.Views.ListsIndex = Backbone.CompositeView.extend({
 				var that = this;
 				_(this.subviews('.lists-container')).each(function(view){
 					if(view.model && view.model.attributes.id === parseInt(listId) ) {
-						debugger
 						that.removeSubview('.lists-container', view);
 					}
 				})

@@ -6,13 +6,14 @@ TrelloClone.Views.CardsIndex = Backbone.CompositeView.extend({
 	initialize: function(options) {
 		this.collection = options.collection;
 		this.parentListId = options.listId;
-		// this.listenTo(this.collection, 'sync', this.render);
+        // this.listenTo(this.collection, 'remove', this.render);
 		this.listenTo(this.collection, 'add', this.addCard);
 		this.collection.each(this.addCard.bind(this));
 	},
 	
 	events: {
-		'update-sort': 'updateSort'
+		'update-sort': 'updateSort',
+        'click .delete-card': "deleteCard"
 	},
 	
 	updateSort: function(event, movedModel, position, droppedListId) {
@@ -59,5 +60,24 @@ TrelloClone.Views.CardsIndex = Backbone.CompositeView.extend({
 		this.attachSubviews();
 		return this;
 	},
+    
+    deleteCard: function (event) {
+        event.preventDefault();
+        var $target = $(event.currentTarget);
+		var cardId = $target.attr('card-id')
+		var card = this.collection.get(cardId);
+		card.destroy({
+			success: function () {
+				this.collection.remove(card);
+				var that = this;
+				_(this.subviews('.cards-container')).each(function(view){
+					if(view.model && view.model.attributes.id === parseInt(cardId) ) {
+						that.removeSubview('.cards-container', view);
+					}
+				})
+			}.bind(this)
+		});
+        $('.modal-backdrop').remove();
+    }
 	
 })
