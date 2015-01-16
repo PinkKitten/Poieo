@@ -2,7 +2,7 @@ User.create!([
   {email: "guest@gmail.com", password_digest: "$2a$10$7D/vId82TtZNGLTmDukx/e2aDdioCYeL.rfXInJRofTrxhYJ7ZFKC", session_token: "sFMs_oQrZAubTFWQFPV1og"}
 ])
 Board.create!([
-  {title: "Welcome!", user_id: 6},
+  {title: "Welcome!", user_id: 1},
 ])
 List.create!([
   {title: "Basics", board_id: 1, ord: 0.0},
