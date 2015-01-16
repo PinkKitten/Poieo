@@ -72,12 +72,9 @@ TrelloClone.Views.BoardsIndex = Backbone.View.extend({
     
     editBoard: function(event) {
         event.preventDefault();
-        var $target = $(event.currentTarget).parent().find(
-            '.board-index-div-content').find('p');
+        var $target = $(event.currentTarget).parent().find('.board-index-div-content').find('p');
         this.editingId = $(event.currentTarget).attr("board-id");
-        this.currentEditing = $target.replaceWith($('<input>').val(
-            $target.text()).addClass('editing').addClass(
-            'form-control'));
+        this.currentEditing = $target.replaceWith($('<input>').val($target.text()).addClass('editing').addClass('form-control'));
         $('.editing').focus();
     },
     
