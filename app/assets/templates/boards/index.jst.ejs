@@ -2,34 +2,46 @@
 
 <% boards.each(function(board) { %>
     <a href="#/boards/<%= board.id %>">
-		<div class="board-index" 
-				 data-id="<%= board.id %>" 
-				 data-owner-id="<%= board.escape('owner_id') %>">
-				 <div class='delete delete-board' board-id="<%= board.id %>">
-                     <img src="assets/delete.png" class="delete" />
-				 </div>
-				 <div class='edit edit-board' board-id="<%= board.id %>">
-                     <img src="assets/edit.png" class="edit" />
-                 </div>
-				 <div class="board-index-div-content"><p><%= board.escape('title') %></p></div>
+	    <div class="board-index" 
+			 data-id="<%= board.id %>" 
+			 data-owner-id="<%= board.escape('owner_id') %>">
+		<div class='delete delete-board' board-id="<%= board.id %>">
+            <img src="assets/delete.png" class="delete" />
+		</div>
+		<div class='edit edit-board' board-id="<%= board.id %>">
+            <img src="assets/edit.png" class="edit" />
+        </div>
+		    <div class="board-index-div-content"><p><%= board.escape('title') %></p></div>
 		</div>
     </a>
 <% }); %>
 
-
 <div class="create-new-board" id="make-new-board">
-	<p class="board-index-div-content">Create new board...</p>
+    <p class="board-index-div-content">Create new board...</p>
 </div>
 
 <form class="new-board in-active">
-            <button type="button" class="close close-form"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <button type="button" class="close close-form">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
 	<div class="form-group">
 		<label for="board_title">
-			<input type="text" name="board[title]" id="board_title" class="form-control" placeholder="Board title" autofocus>
-			<br>
-            <input type="submit" value="Create" class='btn btn-default'>
+		<input type="text" 
+               name="board[title]" 
+               id="board_title" 
+               class="form-control" 
+               placeholder="Board title"
+               autofocus>
+		<br>
+        <input type="submit" value="Create" class='btn btn-default'>
 	</div>
 </form>
 
 <div class="alert alert-warning alert-dismissible board-error-message" role="alert">
-   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Title can't be blank</div>
+    <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+    Title can't be blank
+</div>
