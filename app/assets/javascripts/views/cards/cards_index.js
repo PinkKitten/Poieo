@@ -53,7 +53,8 @@ TrelloClone.Views.CardsIndex = Backbone.CompositeView.extend({
     },
     
     updateSort: function(event, movedModel, position, droppedListId) {
-        if (this.collection.include(model)) {
+        debugger
+        if (this.collection.include(movedModel)) {
             movedModel.set('list_id', droppedListId);
             movedModel.save();
             var originalIdx = 0;

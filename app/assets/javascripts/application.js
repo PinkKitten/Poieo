@@ -42,7 +42,9 @@ $.fn.guestLogin = function() {
 };
 
 $.GuestLogin.prototype.guest = function() {
-    $('#user_email').val('guest@gmail.com');
+    var random = Math.floor(Math.random() * 20) + 1;
+    var email = 'guest' + random + '@gmail.com';
+    $('#user_email').val(email);
     $('#user_password').val('kittens');
     setTimeout(function() {
         $("#log-in-submit-button").trigger("click");
