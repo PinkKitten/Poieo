@@ -1,0 +1,8 @@
+== README
+
+Poieo is a todo app inspired by Trello. Ruby on Rails back-end, Backbone.js front-end.
+
+- Drag and Drop features implemented using jQuery Sortable
+- Recursive EJS templates to display boards with nested lists and cards 
+- Sorted order of lists and cards persisted to the database
+
